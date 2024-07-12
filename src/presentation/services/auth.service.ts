@@ -1,3 +1,4 @@
+import { bcryptAdapter } from '../../config';
 import { UserModel } from '../../data';
 import { CustomError, RegisterUserDOT, UserEntity } from '../../domain';
 
@@ -11,14 +12,16 @@ export class AuthService {
 
     try {
       const user = new UserModel(registerUserDto);
+
+      user.password = bcryptAdapter.hash(registerUserDto.password);
       await user.save();
 
       const { password, ...newUser } = UserEntity.fromObject(user);
       return {
         user: newUser,
       };
-    } catch (error) {}
-
-    return 'Todo ok';
+    } catch (error) {
+      throw CustomError.interalServer(`${error}`);
+    }
   }
 }
