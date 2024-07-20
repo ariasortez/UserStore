@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { AuthController } from './controller';
 import { AuthService, EmailService } from '../services/';
 import { envs } from '../../config';
-import { env } from 'process';
 
 export class AuthRoutes {
   static get routes(): Router {
