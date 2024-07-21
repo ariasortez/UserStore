@@ -5,7 +5,7 @@ import { CategoryService } from '../services/category.service';
 export class CategoryController {
   constructor(private categoryService: CategoryService) {}
   private handleError = (error: unknown, res: Response) => {
-    console.log('Testing');
+    console.log('Testing DEbian');
     if (error instanceof CustomError) {
       return res.status(error.statusCode).json({ error: error.message });
     }
